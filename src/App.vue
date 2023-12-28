@@ -1,8 +1,10 @@
 <template>
-  <h1 class="text-xl bg-red-500">test</h1>
+  <main>
+    <AppAside />
+    <router-view></router-view>
+  </main>
 </template>
 
 <script setup lang="ts">
+import AppAside from "./components/AppAside.vue";
 </script>
-
-<style></style>
