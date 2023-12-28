@@ -4,10 +4,30 @@
         <span class="description">
             Please provide your name, email address, and phone number.
         </span>
+        <input type="text" v-model="email" v-bind="emailAttrs">
+        <Form @submit="onSubmit">
+            <Field name="email">
+
+            </Field>
+        </Form>
     </div>
 </template>
 
 <script setup lang="ts">
+import InputField from "../../common/InputField.vue"
+import { useForm, Form, Field } from 'vee-validate';
+
+const { handleSubmit, defineField } = useForm();
+
+defineField('email', {
+    initialValue: '',
+    validation: 'required|email'
+});
+
+function onSubmit(values) {
+    console.log('Form Values:', values);
+    // Handle form submission here
+}
 </script>
 
 <style scoped>

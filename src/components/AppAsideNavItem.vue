@@ -1,7 +1,7 @@
 <template>
     <li class="cursor-pointer z-[1]">
         <div
-            class="rounded-full border-2 text-white border-white font-bold rounded-full w-[40px] h-[40px] flex justify-center items-center">
+            class="rounded-full border-2 text-white border-white font-bold w-[40px] h-[40px] flex justify-center items-center">
             {{ stepNumber }}
         </div>
     </li>
