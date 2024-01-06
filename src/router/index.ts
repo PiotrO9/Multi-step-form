@@ -5,8 +5,21 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
+      redirect: '/step/1'
+    },
+    {
+      path: '/step/1',
+      name: 'stepOne',
       component: () => import('../components/steps/one/StepOne.vue')
+    },
+    {
+      path: '/step/2',
+      name: 'stepTwo',
+      component: () => import('../components/steps/one/StepTwo.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/step/1'
     }
   ]
 })

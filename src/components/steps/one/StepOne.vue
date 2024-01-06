@@ -20,8 +20,10 @@ import { onMounted } from "vue";
 import { useFormStore } from "@/stores/formStore";
 import InputField from "../../common/InputField.vue";
 import type { PersonalInfoForm } from '@/types/formTypes';
+import { useRouter } from 'vue-router';
 
 const formStore = useFormStore();
+const router = useRouter();
 
 const schema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
@@ -45,11 +47,13 @@ const { handleSubmit, validate } = useForm<PersonalInfoForm>({
 
 const onSubmit = handleSubmit((values: PersonalInfoForm) => {
     console.log(values)
+    const routeText = `/step/${formStore.getCurrentStep + 1}`
+    router.push(routeText)
 });
 
 const validateAndSubmit = async (): Promise<boolean> => {
-    const isValid = await validate();
-    if (isValid) {
+    const validationResult = await validate();
+    if (validationResult.valid) {
         onSubmit();
         return true;
     }
@@ -57,6 +61,7 @@ const validateAndSubmit = async (): Promise<boolean> => {
 };
 
 onMounted(() => {
+    formStore.setCurrentStep(1);
     formStore.setFormValidationAndSubmission(validateAndSubmit);
 });
 </script>
