@@ -18,6 +18,11 @@ const router = createRouter({
       component: () => import('../components/steps/one/StepTwo.vue')
     },
     {
+      path: '/step/3',
+      name: 'stepThree',
+      component: () => import('../components/steps/one/StepThree.vue')
+    },
+    {
       path: '/:pathMatch(.*)*',
       redirect: '/step/1'
     }

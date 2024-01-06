@@ -11,13 +11,23 @@
 
 <script setup lang="ts">
 import { useFormStore } from '@/stores/formStore';
+import { useRouter } from 'vue-router';
 
 const formStore = useFormStore();
+const router = useRouter();
 
 const handleNextStepClick = async (): Promise<void> => {
     switch (formStore.getCurrentStep) {
         case 1: {
             await formStore.validateAndSubmit();
+            break;
+        }
+        case 2: {
+            router.push("/step/3");
+            break;
+        }
+        case 3: {
+            router.push("/step/4");
             break;
         }
     }

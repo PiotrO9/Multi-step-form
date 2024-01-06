@@ -1,5 +1,6 @@
 <template>
-    <li class="plan rounded-md border-2 border-gray-100 h-min flex p-3 gap-4 cursor-pointer">
+    <li class="plan rounded-md border-2 border-gray-100 h-min flex p-3 gap-4 cursor-pointer"
+        :class="{ active: selectedPlan === name }">
         <div class="image">
             <img :src="imagePath" :alt="name">
         </div>
@@ -8,7 +9,7 @@
                 {{ name }}
             </span>
             <span class="price">
-                ${{ price }}/m
+                ${{ planPeriod ? price * 10 : price }}/{{ planPeriod ? 'y' : 'm' }}
             </span>
             <span class="discount font-medium">
                 {{ discount }}
@@ -19,6 +20,12 @@
 
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
+import { useFormStore } from '@/stores/formStore';
+
+const formStore = useFormStore();
+
+const planPeriod = computed(() => formStore.getPlanPeriod);
+const selectedPlan = computed(() => formStore.getSelectedPlanName);
 
 interface planProps {
     name: string,
@@ -35,6 +42,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.active {
+    border-color: red;
+}
+
 .name {
     color: var(--marine-blue);
 }
