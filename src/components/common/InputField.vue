@@ -1,13 +1,12 @@
 <template>
     <div class="TextInput" :class="{ 'has-error': !!errorMessage, success: meta.valid }">
-
         <label :for="name">
             {{ label }}
         </label>
         <input :name="name" :id="name" :type="type" :value="inputValue" :placeholder="placeholder" @input="handleChange"
             @blur="handleBlur" />
-        <p class="help-message" v-show="errorMessage || meta.valid">
-            {{ errorMessage || successMessage }}
+        <p class="error" v-show="errorMessage || meta.valid">
+            {{ errorMessage }}
         </p>
     </div>
 </template>
@@ -21,7 +20,6 @@ const props = defineProps({
     value: String,
     name: String,
     label: String,
-    successMessage: String,
     placeholder: String
 });
 
@@ -42,6 +40,11 @@ const {
 <style scoped>
 .error {
     color: red;
+}
+
+label {
+    color: var(--marine-blue);
+    font-weight: 600;
 }
 
 input {

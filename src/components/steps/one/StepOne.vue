@@ -4,45 +4,61 @@
         <span class="description">
             Please provide your name, email address, and phone number.
         </span>
-        <!-- <input type="text" v-model="email" v-bind="emailAttrs"> -->
-        <Form @submit="onSubmit" :validation-schema="schema" @invalid-submit="onInvalidSubmit">
-            <InputField name="name" type="text" label="Full Name" placeholder="Your Name"
-                success-message="Nice to meet you!" />
-            <button type="submit">
-                submit
-            </button>
+        <Form id="stepOne" ref="form" @submit.prevent="onSubmit" :validation-schema="schema"
+            @invalid-submit="onInvalidSubmit">
+            <InputField name="name" type="text" label="Name" placeholder="e.g. Stephen King" />
+            <InputField name="email" type="text" label="Email Address" placeholder="e.g. stephenking@lorem.com" />
+            <InputField name="phone" type="phone" label="Phone Number" placeholder="e.g. +1 234567890" />
         </Form>
     </div>
 </template>
 
 <script setup lang="ts">
-import InputField from "../../common/InputField.vue"
-import { Form } from 'vee-validate';
+import { Form as VeeForm, useForm } from 'vee-validate';
 import * as Yup from 'yup';
+import { onMounted } from "vue";
+import { useFormStore } from "@/stores/formStore";
+import InputField from "../../common/InputField.vue";
+import type { PersonalInfoForm } from '@/types/formTypes';
 
-function onSubmit(values) {
-    alert(JSON.stringify(values, null, 2));
-}
-
-function onInvalidSubmit() {
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.classList.add('invalid');
-    setTimeout(() => {
-        submitBtn.classList.remove('invalid');
-    }, 1000);
-}
+const formStore = useFormStore();
 
 const schema = Yup.object().shape({
-    name: Yup.string().required(),
-    email: Yup.string().email().required(),
-    password: Yup.string().min(6).required(),
-    confirm_password: Yup.string()
-        .required()
-        .oneOf([Yup.ref('password')], 'Passwords do not match'),
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid email").required("Email is required"),
+    phone: Yup.string()
+        .required('Phone number is required')
+        .matches(
+            /^(\+\d{1,3}[- ]?)?\d{10}$/,
+            "Invalid phone number"
+        )
 });
 
+const { handleSubmit, validate } = useForm<PersonalInfoForm>({
+    validationSchema: schema,
+    initialValues: {
+        name: '',
+        email: '',
+        phone: ''
+    }
+});
 
+const onSubmit = handleSubmit((values: PersonalInfoForm) => {
+    console.log(values)
+});
 
+const validateAndSubmit = async (): Promise<boolean> => {
+    const isValid = await validate();
+    if (isValid) {
+        onSubmit();
+        return true;
+    }
+    return false;
+};
+
+onMounted(() => {
+    formStore.setFormValidationAndSubmission(validateAndSubmit);
+});
 </script>
 
 <style scoped>
@@ -63,5 +79,11 @@ const schema = Yup.object().shape({
 .description {
     color: gray;
     font-weight: 500;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 </style>
