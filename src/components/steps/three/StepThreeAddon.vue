@@ -32,11 +32,11 @@ interface addonProps {
 const { name, description, price } = defineProps<addonProps>();
 
 const formStore = useFormStore();
-const addonState = ref<boolean>(false);
 const planPeriod = computed(() => formStore.getPlanPeriod);
 const isAddonActive = computed(() => {
-    return formStore.getAddons.find((addon) => addon == name)
+    return (!!formStore.getAddons.find((addon) => addon == name))
 })
+const addonState = ref<boolean>(isAddonActive.value);
 
 watch(addonState, () => {
     if (addonState.value) {
@@ -56,6 +56,7 @@ watch(addonState, () => {
 }
 
 .active {
-    border-color: red;
+    background-color: var(--magnolia);
+    border-color: var(--purplish-blue);
 }
 </style>

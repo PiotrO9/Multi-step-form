@@ -35,6 +35,7 @@ export const useFormStore = defineStore('formStore', {
     },
     addAddon(addonName: string): void {
       this.addons.push(addonName)
+      this.addons = Array.from(new Set(this.addons))
     },
     removeAddon(addonName: string): void {
       this.addons = this.addons.filter((addon: string) => addon != addonName)

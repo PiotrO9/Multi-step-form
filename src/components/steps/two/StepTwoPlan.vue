@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import { useFormStore } from '@/stores/formStore';
 
 const formStore = useFormStore();
@@ -35,15 +35,12 @@ interface planProps {
 
 const imagePath = computed(() => `/src/assets/images/icon-${name.toLowerCase()}.svg`);
 const { name, price, discount } = defineProps<planProps>();
-
-onMounted(() => {
-    console.log(imagePath.value);
-})
 </script>
 
 <style scoped>
 .active {
-    border-color: red;
+    background-color: var(--magnolia);
+    border-color: var(--purplish-blue);
 }
 
 .name {

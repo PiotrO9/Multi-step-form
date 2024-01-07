@@ -21,6 +21,7 @@ import { useFormStore } from "@/stores/formStore";
 import InputField from "../../common/InputField.vue";
 import type { PersonalInfoForm } from '@/types/formTypes';
 import { useRouter } from 'vue-router';
+import { routingValidation } from '../../../utils/routingValidation';
 
 const formStore = useFormStore();
 const router = useRouter();
@@ -46,9 +47,8 @@ const { handleSubmit, validate } = useForm<PersonalInfoForm>({
 });
 
 const onSubmit = handleSubmit((values: PersonalInfoForm) => {
-    console.log(values)
-    const routeText = `/step/${formStore.getCurrentStep + 1}`
-    router.push(routeText)
+    formStore.setCurrentStep(2)
+    router.push(`/step/2`)
 });
 
 const validateAndSubmit = async (): Promise<boolean> => {
@@ -61,7 +61,7 @@ const validateAndSubmit = async (): Promise<boolean> => {
 };
 
 onMounted(() => {
-    formStore.setCurrentStep(1);
+    routingValidation();
     formStore.setFormValidationAndSubmission(validateAndSubmit);
 });
 </script>

@@ -1,12 +1,12 @@
 <template>
+  <AppAside />
   <main>
-    <AppAside />
     <router-view></router-view>
-    <AppFooter />
   </main>
+  <AppFooter />
 </template>
 
 <script setup lang="ts">
-import AppAside from "./components/AppAside.vue";
+import AppAside from "./components/Aside/AppAside.vue";
 import AppFooter from "./components/AppFooter.vue";
 </script>

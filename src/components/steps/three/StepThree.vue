@@ -16,10 +16,11 @@ import { onMounted } from 'vue';
 import { useFormStore } from '@/stores/formStore';
 import StepThreeAddon from './StepThreeAddon.vue';
 import { addons } from "../../../datas/addons";
+import { routingValidation } from '../../../utils/routingValidation';
 
 const formStore = useFormStore();
 
 onMounted(() => {
-    formStore.setCurrentStep(3)
+    routingValidation();
 })
 </script>

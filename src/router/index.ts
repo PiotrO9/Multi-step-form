@@ -15,17 +15,22 @@ const router = createRouter({
     {
       path: '/step/2',
       name: 'stepTwo',
-      component: () => import('../components/steps/one/StepTwo.vue')
+      component: () => import('../components/steps/two/StepTwo.vue')
     },
     {
       path: '/step/3',
       name: 'stepThree',
-      component: () => import('../components/steps/one/StepThree.vue')
+      component: () => import('../components/steps/three/StepThree.vue')
     },
     {
       path: '/step/4',
       name: 'stepFour',
-      component: () => import('../components/steps/one/StepFourth.vue')
+      component: () => import('../components/steps/four/StepFour.vue')
+    },
+    {
+      path: '/step/5',
+      name: 'stepFive',
+      component: () => import('../components/steps/five/StepFive.vue')
     },
     {
       path: '/:pathMatch(.*)*',

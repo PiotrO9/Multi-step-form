@@ -10,7 +10,7 @@
                     <span class="highlighted-text">
                         {{ dataSummary.selectedPlanName }} ({{ dataSummary.isPlanYearly ? 'Yearly' : 'Monthly' }})
                     </span>
-                    <span class="change description underline cursor-pointer">
+                    <span @click="routeToAddons" class="change description underline cursor-pointer">
                         Change
                     </span>
                 </div>
@@ -18,7 +18,7 @@
                     ${{ dataSummary.isPlanYearly ? (price * 10) : price }}/{{ dataSummary.isPlanYearly ? 'y' : 'mo' }}
                 </div>
             </div>
-            <hr class="w-[100%] mt-3 mb-3 self-center">
+            <hr v-if="selectedAddons.length" class="w-[100%] mt-3 mb-3 self-center">
             <ul class="flex flex-col gap-2">
                 <li v-for="(selectedAddon, index) in selectedAddons" :key="index" class="flex justify-between">
                     <span class="description">
@@ -46,6 +46,8 @@ import { onMounted, computed, ref } from 'vue';
 import { useFormStore } from '@/stores/formStore';
 import type { DataSummary } from '@/types/dataSummary';
 import { addons } from '@/datas/addons';
+import { routingValidation } from '../../../utils/routingValidation';
+import router from '@/router';
 
 const formStore = useFormStore();
 const dataSummary = computed<DataSummary>(() => formStore.getDataSummary);
@@ -85,8 +87,13 @@ const totalPrice = computed<number>(() => {
     return totalSum;
 })
 
+const routeToAddons = (): void => {
+    formStore.setCurrentStep(2);
+    router.push("/step/2");
+}
+
 onMounted(() => {
-    formStore.setCurrentStep(4);
+    routingValidation()
 })
 </script>
 

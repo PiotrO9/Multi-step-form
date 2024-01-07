@@ -30,6 +30,7 @@ import { onMounted } from "vue";
 import { useFormStore } from "@/stores/formStore";
 import StepTwoPlan from "./StepTwoPlan.vue";
 import { ref, watch } from 'vue';
+import { routingValidation } from '../../../utils/routingValidation';
 
 const plansDatas = [
     {
@@ -63,7 +64,7 @@ const selectItem = (itemName: string): void => {
 }
 
 onMounted(() => {
-    formStore.setCurrentStep(2);
+    routingValidation();
 });
 </script>
 
