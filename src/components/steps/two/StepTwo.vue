@@ -4,11 +4,11 @@
         <span class="description">
             You have the option of montly or yearly billing.
         </span>
-        <ul class="plans flex flex-col gap-3 mt-4">
+        <ul class="plans flex flex-col gap-3 mt-4 md:flex-row">
             <StepTwoPlan v-for="(plan, index) in plansDatas" :key="index" :name="plan.name" :discount="plan.discrount"
                 :price="plan.price" @click="selectItem(plan.name)" />
         </ul>
-        <div class="switch-container mt-4">
+        <div class="switch-container p-2 rounded-lg mt-4">
             <div class="flex justify-center gap-4 ">
                 <span class="w-16" :class="{ active: !checkboxState }">
                     Monthly
@@ -78,6 +78,10 @@ onMounted(() => {
 .active {
     color: var(--marine-blue);
     font-weight: 600;
+}
+
+.switch-container {
+    background-color: var(--magnolia);
 }
 
 .switch {

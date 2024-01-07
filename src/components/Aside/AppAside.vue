@@ -1,7 +1,7 @@
 <template>
-    <aside class="flex-col relative">
+    <aside class="flex-col relative w-full md:max-w-[400px]">
         <img v-if="isMobile" src="../../assets/images/bg-sidebar-mobile.svg" class="w-full absolute top-0 left-0">
-        <img v-else src="../../assets/images/bg-sidebar-desktop.svg" class="w-full">
+        <img v-else src="../../assets/images/bg-sidebar-desktop.svg" class="w-full max-w-[400px]">
         <AppAsideNav />
     </aside>
 </template>

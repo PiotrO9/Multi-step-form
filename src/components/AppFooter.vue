@@ -1,5 +1,5 @@
 <template>
-    <footer class="fixed bottom-0 w-full h-[70px] p-4 flex bg-white justify-end items-center"
+    <footer class="fixed bottom-0 w-full h-[70px] p-4 flex bg-white justify-end items-center md:static"
         :class="{ 'justify-between': formStore.getCurrentStep > 1 }">
         <button v-if="formStore.getCurrentStep > 1 && formStore.getCurrentStep != 5" @click="handlePreviousStep"
             class="description cursor-pointe font-bold">

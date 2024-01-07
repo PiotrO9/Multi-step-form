@@ -14,7 +14,7 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import { useFormStore } from '@/stores/formStore';
-import StepThreeAddon from './StepThreeAddon.vue';
+import StepThreeAddon from '../one/StepThreeAddon.vue';
 import { addons } from "../../../datas/addons";
 import { routingValidation } from '../../../utils/routingValidation';
 
