@@ -1,7 +1,13 @@
 import { defineStore } from 'pinia'
+import type { DataSummary } from '../types/dataSummary'
+
+interface FormStoreProps extends DataSummary {
+  validateAndSubmitForm: null | (() => Promise<boolean>)
+  currentStep: number
+}
 
 export const useFormStore = defineStore('formStore', {
-  state: () => ({
+  state: (): FormStoreProps => ({
     validateAndSubmitForm: null as (() => Promise<boolean>) | null,
     currentStep: 1,
     isPlanYearly: false,
@@ -46,6 +52,13 @@ export const useFormStore = defineStore('formStore', {
     },
     getAddons(): string[] {
       return this.addons
+    },
+    getDataSummary(): DataSummary {
+      return {
+        isPlanYearly: this.isPlanYearly,
+        selectedPlanName: this.selectedPlanName,
+        addons: this.addons
+      } as DataSummary
     }
   }
 })

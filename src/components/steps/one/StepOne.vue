@@ -5,7 +5,7 @@
             Please provide your name, email address, and phone number.
         </span>
         <Form id="stepOne" ref="form" @submit.prevent="onSubmit" :validation-schema="schema"
-            @invalid-submit="onInvalidSubmit">
+            @invalid-submit="onInvalidSubmit" class="flex flex-col gap-2">
             <InputField name="name" type="text" label="Name" placeholder="e.g. Stephen King" />
             <InputField name="email" type="text" label="Email Address" placeholder="e.g. stephenking@lorem.com" />
             <InputField name="phone" type="phone" label="Phone Number" placeholder="e.g. +1 234567890" />
@@ -65,30 +65,3 @@ onMounted(() => {
     formStore.setFormValidationAndSubmission(validateAndSubmit);
 });
 </script>
-
-<style scoped>
-.step {
-    background-color: white;
-    margin: 40px 20px 0px;
-    padding: 30px 20px;
-    border-radius: 8px;
-    height: max-content;
-    position: relative;
-}
-
-.heading {
-    font-weight: bold;
-    font-size: 28px;
-}
-
-.description {
-    color: gray;
-    font-weight: 500;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-</style>

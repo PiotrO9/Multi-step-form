@@ -1,5 +1,6 @@
-@import "./tailwind.css";
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap');
+@import "./tailwind.css";
+@import "./formStyles.css";
 
 :root {
   /* Color Variables */
@@ -45,8 +46,4 @@ html, body, #app {
 
 h1, h2, h3, h4, h5, h6 {
   color: var(--marine-blue);
-}
-
-.description {
-  color: var(--alabaster);
 }

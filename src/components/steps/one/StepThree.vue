@@ -1,5 +1,5 @@
 <template>
-    <div class="step step-two">
+    <div class="step step-three">
         <h1 class="heading">Pick add-ons</h1>
         <span class="description">
             Add-ons help enhance your gmaing experience.
@@ -15,47 +15,11 @@
 import { onMounted } from 'vue';
 import { useFormStore } from '@/stores/formStore';
 import StepThreeAddon from './StepThreeAddon.vue';
+import { addons } from "../../../datas/addons";
 
 const formStore = useFormStore();
-
-const addons = [{
-    name: "Online service",
-    description: "Acces to multiplayer games",
-    price: 1
-},
-{
-    name: "Larger storage",
-    description: "Extra 1TB of cloud save",
-    price: 2
-},
-{
-    name: "Customizable profile",
-    description: "Custom theme on your profile",
-    price: 2
-}]
 
 onMounted(() => {
     formStore.setCurrentStep(3)
 })
 </script>
-
-<style>
-.step {
-    background-color: white;
-    margin: 40px 20px 0px;
-    padding: 30px 20px;
-    border-radius: 8px;
-    height: max-content;
-    position: relative;
-}
-
-.heading {
-    font-weight: bold;
-    font-size: 28px;
-}
-
-.description {
-    color: gray;
-    font-weight: 500;
-}
-</style>
