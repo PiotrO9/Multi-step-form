@@ -1,6 +1,6 @@
 <template>
     <nav class="pt-10 md:absolute md:top-0 md:left-[90px]">
-        <ul class="list-none flex flex-row justify-center gap-4">
+        <ul class="list-none flex flex-row md:flex-col justify-center gap-4">
             <AppAsideNavItem v-for="(stepsDescription, index) in stepsDescriptions" :key="stepsDescription"
                 :stepNumber="index + 1" :description="stepsDescription" />
         </ul>
